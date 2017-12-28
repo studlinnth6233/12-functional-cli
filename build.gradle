@@ -1,0 +1,44 @@
+buildscript {
+    repositories {
+        mavenCentral()
+        jcenter()
+    }
+
+    dependencies {
+        classpath "com.github.ben-manes:gradle-versions-plugin:$gradle_versions_plugin_version"
+        classpath "org.junit.platform:junit-platform-gradle-plugin:$gradle_junit_plugin_version"
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'application'
+apply plugin: 'com.github.ben-manes.versions'
+apply plugin: 'org.junit.platform.gradle.plugin'
+
+repositories {
+    mavenLocal()
+    jcenter()
+    mavenCentral()
+}
+
+dependencies {
+    /* Commons Lang3 */
+    compile "org.apache.commons:commons-lang3:$commons_lang_version"
+
+    /* Retrofit */
+    compile "com.squareup.retrofit2:retrofit:$retrofit2_version"
+    compile "com.squareup.retrofit2:converter-gson:$retrofit2_version"
+    compile "com.squareup.retrofit2:adapter-java8:$retrofit2_version"
+
+    /* JUnit 5 */
+    testCompile("org.junit.jupiter:junit-jupiter-api:${junitJupiterVersion}")
+    testRuntime("org.junit.jupiter:junit-jupiter-engine:${junitJupiterVersion}")
+    testRuntime("org.junit.platform:junit-platform-launcher:${junitPlatformVersion}")
+    testRuntime("org.apache.logging.log4j:log4j-core:${log4jVersion}")
+    testRuntime("org.apache.logging.log4j:log4j-jul:${log4jVersion}")
+}
+
+mainClassName = 'de.fhro.inf.prg3.a12.App'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
