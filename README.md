@@ -11,8 +11,9 @@ Streams may look a little bit complicated but when you got the concept they impr
 1. Create a fork of this repository (button in the right upper corner)
 1. Clone the project (get the link by clicking the green _Clone or download button_)
 1. Import the project to your **IntelliJ**
+1. **Read the whole assignment spec!**
 
-_Remark: the given test suite will not completely succeed until you completed the first part of the assignment._
+_Remark: the given test suite is incomplete but will succeed after the checkout._
 
 ## Generators
 
@@ -71,10 +72,10 @@ _Remark: the UML is incomplete and is meant as implementation hint!_
 1. Implement the `RandomJokeSupplier` - this supplier returns a random joke everytime it is used.
 1. Implement the `AllJokesSupplier` - this supplier iterates all jokes in an infinite loop i.e. if all jokes were retrieved it continues with the first joke.
 1. Implement the `JokeGenerator` - the generator returns infinite streams based on the implemented suppliers.
+1. Complete the test suite to ensure that your generators are working correctly!
 
-Note that the class structure is already there.
-
-_Side note: when you have completed the implementation of the suppliers and the generator you can test your implementation with the given test suite._
+Note that the class structure is already there (including the empty unit tests).
+You may also implement the unit tests after the next part of the assignment.
 
 ## Using the generators
 
