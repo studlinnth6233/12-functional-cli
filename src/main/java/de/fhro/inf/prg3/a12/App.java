@@ -9,25 +9,27 @@ import java.util.stream.Stream;
 
 public abstract class App {
 
+    /**
+     * Scanner to read input from the STDIN
+     */
     private static final Scanner inputScanner = new Scanner(System.in);
+
+    /**
+     * Stream generator
+     */
     private static final JokeGenerator jokeGenerator = new JokeGenerator();
 
     public static void main(String[] args) {
         boolean shouldQuit = false;
         int jokeCount;
         int skipCount;
+
+        /* loop until the the user wants to quit */
         do {
             jokeCount = readInt("How many jokes do you want?");
             skipCount = readInt("How many jokes do you want to skip");
 
-            Stream<ResponseWrapper<JokeDto>> jokesSource;
-            switch (readJokeSource()) {
-                case Random:
-                    jokesSource = jokeGenerator.randomJokesStream();
-                    break;
-                default:
-                    jokesSource = jokeGenerator.jokesStream();
-            }
+            Stream<ResponseWrapper<JokeDto>> jokesSource = readJokeSource();
 
             /* TODO consume the `jokesSource`
              * filter it for non null objects
@@ -41,9 +43,16 @@ public abstract class App {
                 shouldQuit = true;
             }
         } while (!shouldQuit);
+        /* close the scanner before exiting */
+        inputScanner.close();
         System.exit(0);
     }
 
+    /**
+     * Utility method to read an integer
+     * @param message message provided to the user
+     * @return read integer value
+     */
     private static int readInt(String message) {
         System.out.println(message);
         do {
@@ -56,7 +65,12 @@ public abstract class App {
         } while (true);
     }
 
-    private static JokeSource readJokeSource() {
+    /**
+     * Utility method to determine the joke stream source to use
+     *
+     * @return stream of JokeDtos wrapped in ResponseWrapper objects
+     */
+    private static Stream<ResponseWrapper<JokeDto>> readJokeSource() {
         System.out.println("Which joke source do you want to use?");
         System.out.println("1) Random jokes");
         System.out.println("2) Linear by id");
@@ -66,18 +80,13 @@ public abstract class App {
                 int selection = inputScanner.nextInt();
                 switch (selection) {
                     case 1:
-                        return JokeSource.Random;
+                        return jokeGenerator.randomJokesStream();
                     default:
-                        return JokeSource.Linear;
+                        return jokeGenerator.jokesStream();
                 }
             } catch (Exception e) {
                 System.out.println("No valid selection");
             }
         } while (true);
-    }
-
-    enum JokeSource {
-        Random,
-        Linear
     }
 }

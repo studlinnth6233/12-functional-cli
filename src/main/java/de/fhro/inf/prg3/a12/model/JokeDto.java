@@ -8,13 +8,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * Data transfer object (DTO) for ICNDB jokes
  * @author Peter Kurfer
- * Created on 12/28/17.
  */
 public class JokeDto {
 
+    /**
+     * ID of the joke
+     */
     private int id;
+
+    /**
+     * joke content
+     */
     private String joke;
+
+    /**
+     * Categories of the joke
+     */
     private List<String> categories;
 
     public JokeDto() {

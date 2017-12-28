@@ -1,7 +1,5 @@
 package de.fhro.inf.prg3.a12.icndb.suppliers;
 
-import java.util.function.Supplier;
-
 import de.fhro.inf.prg3.a12.icndb.ICNDBApi;
 import de.fhro.inf.prg3.a12.icndb.ICNDBService;
 import de.fhro.inf.prg3.a12.model.JokeDto;
@@ -9,11 +7,13 @@ import de.fhro.inf.prg3.a12.model.ResponseWrapper;
 import org.apache.commons.lang3.NotImplementedException;
 
 /**
+ * Supplier implementation to retrieve all jokes of the ICNDB in a linear way
  * @author Peter Kurfer
  */
 
 public final class AllJokesSupplier {
 
+    /* ICNDB API proxy to retrieve jokes */
     private final ICNDBApi icndbApi;
 
     public AllJokesSupplier() {

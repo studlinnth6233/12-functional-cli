@@ -1,7 +1,5 @@
 package de.fhro.inf.prg3.a12.icndb.suppliers;
 
-import java.util.function.Supplier;
-
 import de.fhro.inf.prg3.a12.icndb.ICNDBApi;
 import de.fhro.inf.prg3.a12.icndb.ICNDBService;
 import de.fhro.inf.prg3.a12.model.JokeDto;
@@ -14,6 +12,7 @@ import org.apache.commons.lang3.NotImplementedException;
 
 public final class RandomJokeSupplier {
 
+    /* ICNDB API proxy to retrieve jokes */
     private final ICNDBApi icndbApi;
 
     public RandomJokeSupplier() {

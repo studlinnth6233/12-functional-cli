@@ -4,16 +4,26 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 /**
+ * Wrapper object for ICNDB API results
+ * Results of the API always contain a value and a success indicator
+ * to handle this wrapping this class models the same structure to ease the deserialization
  * @author Peter Kurfer
- * Created on 12/28/17.
  */
 public class ResponseWrapper<T> {
 
+    /**
+     * success indicator: error or success
+     */
     private String type;
 
+    /**
+     * actual received value
+     */
     private T value;
 
     public ResponseWrapper() {
+        /* set default to error
+         * to avoid calls to the value when there is no value */
         type = "error";
     }
 
