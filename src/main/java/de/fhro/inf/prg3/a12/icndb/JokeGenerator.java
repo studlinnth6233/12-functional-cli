@@ -1,10 +1,10 @@
 package de.fhro.inf.prg3.a12.icndb;
 
-import java.util.stream.Stream;
-
 import de.fhro.inf.prg3.a12.model.JokeDto;
 import de.fhro.inf.prg3.a12.model.ResponseWrapper;
 import org.apache.commons.lang3.NotImplementedException;
+
+import java.util.stream.Stream;
 
 /**
  * @author Peter Kurfer

@@ -12,7 +12,7 @@ import org.apache.commons.lang3.NotImplementedException;
  * @author Peter Kurfer
  */
 
-public final class RandomJokeSupplier implements Supplier<ResponseWrapper<JokeDto>> {
+public final class RandomJokeSupplier {
 
     private final ICNDBApi icndbApi;
 
@@ -20,7 +20,6 @@ public final class RandomJokeSupplier implements Supplier<ResponseWrapper<JokeDt
         icndbApi = ICNDBService.getInstance();
     }
 
-    @Override
     public ResponseWrapper<JokeDto> get() {
         /* TODO fetch a random joke synchronously
          * if an exception occurs return null */

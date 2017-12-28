@@ -12,7 +12,7 @@ import org.apache.commons.lang3.NotImplementedException;
  * @author Peter Kurfer
  */
 
-public final class AllJokesSupplier implements Supplier<ResponseWrapper<JokeDto>> {
+public final class AllJokesSupplier {
 
     private final ICNDBApi icndbApi;
 
@@ -22,7 +22,6 @@ public final class AllJokesSupplier implements Supplier<ResponseWrapper<JokeDto>
          * to determine when all jokes are iterated and the counters have to be reset */
     }
 
-    @Override
     public ResponseWrapper<JokeDto> get() {
         /* TODO retrieve the next joke
          * note that there might be IDs that are not present in the database
