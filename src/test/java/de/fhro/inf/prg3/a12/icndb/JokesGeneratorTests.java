@@ -1,15 +1,6 @@
 package de.fhro.inf.prg3.a12.icndb;
 
-import de.fhro.inf.prg3.a12.model.JokeDto;
-import de.fhro.inf.prg3.a12.model.ResponseWrapper;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-
-import java.time.Duration;
-import java.util.Objects;
-import java.util.stream.Stream;
-
-import static org.junit.jupiter.api.Assertions.assertTimeout;
 
 /**
  * @author Peter Kurfer
