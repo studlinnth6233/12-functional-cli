@@ -25,7 +25,7 @@ There are two kinds of streams:
 
 A stream based on a list of objects is a finite stream as there are only a discrete number of elements that can be iterated.
 
-Infinite streams are seaming to be a little bit weard but they are also very useful.
+Infinite streams are seaming to be a little bit weird but they are also very useful.
 Think of a pseudo random number generator.
 An infinite stream may be used to produce as many random numbers as required.
 This generator may be implemented like this:
@@ -69,7 +69,7 @@ In this part of the assignment you have to implement two generators as shown in 
 
 _Remark: the UML is incomplete and is meant as implementation hint!_
 
-1. Implement the `RandomJokeSupplier` - this supplier returns a random joke everytime it is used.
+1. Implement the `RandomJokeSupplier` - this supplier returns a random joke every time it is used.
 1. Implement the `AllJokesSupplier` - this supplier iterates all jokes in an infinite loop i.e. if all jokes were retrieved it continues with the first joke.
 1. Implement the `JokeGenerator` - the generator returns infinite streams based on the implemented suppliers.
 1. Complete the test suite to ensure that your generators are working correctly!
