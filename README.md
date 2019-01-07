@@ -1,6 +1,8 @@
-_This is an assignment to the class [Programmieren 3](https://hsro-inf-prg3.github.io) at the [University of Applied Sciences Rosenheim](http://www.fh-rosenheim.de)._
+_This is an assignment to the class [Programmieren 3](https://hsro-inf-prg3.github.io) at the [Technical University of Applied Sciences Rosenheim](https://www.th-rosenheim.de)._
 
 # Assignment 12: Functional - CLI variant
+
+[![](https://travis-ci.org/hsro-inf-prg3/12-functional-cli.svg?branch=master)](https://travis-ci.org/hsro-inf-prg3/12-functional-cli)
 
 This assignment covers the basics of the Java 8 `Stream` API.
 Streams are a functional concept and are relatively new in Java but they are very useful in combination with all kinds of _iterable_ data sources.
