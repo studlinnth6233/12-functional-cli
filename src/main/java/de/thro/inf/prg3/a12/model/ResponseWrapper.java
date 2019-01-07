@@ -53,7 +53,7 @@ public class ResponseWrapper<T> {
 
         if (!(o instanceof ResponseWrapper)) return false;
 
-        ResponseWrapper<?> that = (ResponseWrapper<?>) o;
+        var that = (ResponseWrapper<?>) o;
 
         return new EqualsBuilder()
                 .append(getType(), that.getType())
