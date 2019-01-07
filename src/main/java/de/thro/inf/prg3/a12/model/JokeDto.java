@@ -63,7 +63,7 @@ public class JokeDto {
 
         if (!(o instanceof JokeDto)) return false;
 
-        JokeDto joke1 = (JokeDto) o;
+        var joke1 = (JokeDto) o;
 
         return new EqualsBuilder()
                 .append(getId(), joke1.getId())

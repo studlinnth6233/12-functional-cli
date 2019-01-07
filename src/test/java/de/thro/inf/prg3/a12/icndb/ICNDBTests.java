@@ -1,14 +1,9 @@
 package de.thro.inf.prg3.a12.icndb;
 
-import de.thro.inf.prg3.a12.model.JokeDto;
-import de.thro.inf.prg3.a12.model.ResponseWrapper;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import java.util.logging.Logger;
 
@@ -19,69 +14,69 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 
 public class ICNDBTests {
-    private static final Logger logger = Logger.getLogger(ICNDBTests.class.getName());
-    private static final int REQUEST_COUNT = 100;
+	private static final Logger logger = Logger.getLogger(ICNDBTests.class.getName());
+	private static final int REQUEST_COUNT = 100;
 
-    private ICNDBApi icndbApi;
+	private ICNDBApi icndbApi;
 
-    public ICNDBTests() {
-        this.icndbApi = ICNDBService.getInstance();
-    }
+	public ICNDBTests() {
+		this.icndbApi = ICNDBService.getInstance();
+	}
 
-    @Test
-    void testCollision() throws ExecutionException, InterruptedException {
-        Set<Integer> jokeNumbers = new HashSet<>();
-        int requests = 0;
-        boolean collision = false;
+	@Test
+	void testCollision() throws ExecutionException, InterruptedException {
+		var jokeNumbers = new HashSet<>();
+		var requests = 0;
+		var collision = false;
 
-        while (requests++ < REQUEST_COUNT) {
-            CompletableFuture<ResponseWrapper<JokeDto>> jokeCall = icndbApi.getRandomJoke();
-            JokeDto joke = jokeCall.get().getValue();
+		while (requests++ < REQUEST_COUNT) {
+			var jokeCall = icndbApi.getRandomJoke();
+			var joke = jokeCall.get().getValue();
 
-            if(jokeNumbers.contains(joke.getId())) {
-                logger.info(String.format("Collision at joke %s", joke.getId()));
-                collision = true;
-                break;
-            }
+			if (jokeNumbers.contains(joke.getId())) {
+				logger.info(String.format("Collision at joke %s", joke.getId()));
+				collision = true;
+				break;
+			}
 
-            jokeNumbers.add(joke.getId());
-            logger.info(joke.toString());
-        }
+			jokeNumbers.add(joke.getId());
+			logger.info(joke.toString());
+		}
 
-        assertTrue(collision, String.format("Completed %d requests without collision; consider increasing REQUEST_COUNT", requests));
-    }
+		assertTrue(collision, String.format("Completed %d requests without collision; consider increasing REQUEST_COUNT", requests));
+	}
 
-    @Test
-    void testGetRandomJokeWithChangedName() throws ExecutionException, InterruptedException {
-        JokeDto j = icndbApi.getRandomJoke("Bruce", "Wayne").get().getValue();
-        assertNotNull(j);
-        assertFalse(j.getJoke().contains("Chuck"));
-        assertFalse(j.getJoke().contains("Norris"));
-        logger.info(j.toString());
-    }
+	@Test
+	void testGetRandomJokeWithChangedName() throws ExecutionException, InterruptedException {
+		var j = icndbApi.getRandomJoke("Bruce", "Wayne").get().getValue();
+		assertNotNull(j);
+		assertFalse(j.getJoke().contains("Chuck"));
+		assertFalse(j.getJoke().contains("Norris"));
+		logger.info(j.toString());
+	}
 
-    @Test
-    void testGetJokeById() throws ExecutionException, InterruptedException {
+	@Test
+	void testGetJokeById() throws ExecutionException, InterruptedException {
 
-        List<Integer> randomIds = new ArrayList<>(10);
+		var randomIds = new ArrayList<Integer>(10);
 
-        for(int i = 0; i < 10; i++) {
-            randomIds.add(icndbApi.getRandomJoke().get().getValue().getId());
-        }
+		for (var i = 0; i < 10; i++) {
+			randomIds.add(icndbApi.getRandomJoke().get().getValue().getId());
+		}
 
-        for(Integer id : randomIds) {
-            JokeDto j = icndbApi.getJoke(id).get().getValue();
-            assertNotNull(j);
-            assertTrue(randomIds.contains(j.getId()));
-            logger.info(j.toString());
-        }
-    }
+		for (var id : randomIds) {
+			var j = icndbApi.getJoke(id).get().getValue();
+			assertNotNull(j);
+			assertTrue(randomIds.contains(j.getId()));
+			logger.info(j.toString());
+		}
+	}
 
-    @Test
-    void testGetJokeCount() throws ExecutionException, InterruptedException {
-        int jokeCount = icndbApi.getJokeCount().get().getValue();
+	@Test
+	void testGetJokeCount() throws ExecutionException, InterruptedException {
+		var jokeCount = icndbApi.getJokeCount().get().getValue();
 
-        assertNotEquals(0, jokeCount);
-    }
+		assertNotEquals(0, jokeCount);
+	}
 
 }

@@ -20,7 +20,7 @@ public abstract class App {
     private static final JokeGenerator jokeGenerator = new JokeGenerator();
 
     public static void main(String[] args) {
-        boolean shouldQuit = false;
+        var shouldQuit = false;
         int jokeCount;
         int skipCount;
 
@@ -38,7 +38,7 @@ public abstract class App {
              * and print the jokes to the STDOUT */
 
             System.out.println("If you want to quit press [Q] otherwise press [C] to continue.");
-            String input = inputScanner.next();
+            var input = inputScanner.next();
             if (input.equals("q") || input.equals("Q")) {
                 shouldQuit = true;
             }
@@ -57,7 +57,7 @@ public abstract class App {
         System.out.println(message);
         do {
             try {
-                int input = inputScanner.nextInt();
+                var input = inputScanner.nextInt();
                 if (input >= 0) return input;
             } catch (Exception e) {
                 System.out.println("Error while reading integer.");
@@ -77,7 +77,7 @@ public abstract class App {
 
         do {
             try {
-                int selection = inputScanner.nextInt();
+                var selection = inputScanner.nextInt();
                 switch (selection) {
                     case 1:
                         return jokeGenerator.randomJokesStream();

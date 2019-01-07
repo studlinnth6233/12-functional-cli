@@ -34,7 +34,7 @@ public final class ICNDBService implements ICNDBApi {
 
     private ICNDBService() {
         /* Initialize Retrofit */
-        Retrofit retrofit = new Retrofit.Builder()
+        var retrofit = new Retrofit.Builder()
                 .baseUrl("http://api.icndb.com")
                 .addConverterFactory(GsonConverterFactory.create())
                 /* CallAdapterFactory required to wrap calls in CompletableFutures */
