@@ -1,9 +1,9 @@
-package de.fhro.inf.prg3.a12.icndb.suppliers;
+package de.thro.inf.prg3.a12.icndb.suppliers;
 
-import de.fhro.inf.prg3.a12.icndb.ICNDBApi;
-import de.fhro.inf.prg3.a12.icndb.ICNDBService;
-import de.fhro.inf.prg3.a12.model.JokeDto;
-import de.fhro.inf.prg3.a12.model.ResponseWrapper;
+import de.thro.inf.prg3.a12.icndb.ICNDBApi;
+import de.thro.inf.prg3.a12.icndb.ICNDBService;
+import de.thro.inf.prg3.a12.model.JokeDto;
+import de.thro.inf.prg3.a12.model.ResponseWrapper;
 import org.apache.commons.lang3.NotImplementedException;
 
 /**

@@ -1,8 +1,8 @@
-package de.fhro.inf.prg3.a12;
+package de.thro.inf.prg3.a12;
 
-import de.fhro.inf.prg3.a12.icndb.JokeGenerator;
-import de.fhro.inf.prg3.a12.model.JokeDto;
-import de.fhro.inf.prg3.a12.model.ResponseWrapper;
+import de.thro.inf.prg3.a12.icndb.JokeGenerator;
+import de.thro.inf.prg3.a12.model.JokeDto;
+import de.thro.inf.prg3.a12.model.ResponseWrapper;
 
 import java.util.Scanner;
 import java.util.stream.Stream;

@@ -1,7 +1,7 @@
-package de.fhro.inf.prg3.a12.icndb;
+package de.thro.inf.prg3.a12.icndb;
 
-import de.fhro.inf.prg3.a12.model.JokeDto;
-import de.fhro.inf.prg3.a12.model.ResponseWrapper;
+import de.thro.inf.prg3.a12.model.JokeDto;
+import de.thro.inf.prg3.a12.model.ResponseWrapper;
 import org.apache.commons.lang3.NotImplementedException;
 
 import java.util.stream.Stream;

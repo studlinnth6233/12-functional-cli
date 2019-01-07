@@ -1,4 +1,4 @@
-package de.fhro.inf.prg3.a12.icndb;
+package de.thro.inf.prg3.a12.icndb;
 
 import org.junit.jupiter.api.Test;
 
