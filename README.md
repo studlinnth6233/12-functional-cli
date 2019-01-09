@@ -17,6 +17,17 @@ Streams may look a little bit complicated but when you got the concept they impr
 
 _Remark: the given test suite is incomplete but will succeed after the checkout._
 
+## Objectives
+
+1. Implement the `RandomJokeSupplier` - this supplier returns a random joke every time it is used.
+1. Implement the `AllJokesSupplier` - this supplier iterates all jokes in an infinite loop i.e. if all jokes were retrieved it continues with the first joke.
+1. Implement the `JokeGenerator` - the generator returns infinite streams based on the implemented suppliers.
+1. Complete the test suite to ensure that your generators are working correctly!
+
+_Note 1:_ the class structure is already there (including the empty unit tests).
+
+_Note 2:_ the whole logic around the **ICNDB** is already implemented including the `ICNDBService` singleton! There's no possibility to implement asynchronous generators so you'll have to use the `ICNDBService` also in a synchronous way.
+
 ## Generators
 
 A generator is component that creates a `Stream`.
@@ -26,6 +37,15 @@ There are two kinds of streams:
 * infinite
 
 A stream based on a list of objects is a finite stream as there are only a discrete number of elements that can be iterated.
+
+A infinite stream is created by providing a `Supplier<T>` instance to the `Stream.generate(...)` method like this:
+
+```java
+var prngStream = Stream.generate(new PseudoRandomNumberSupplier());
+```
+
+where `PseudoRandomNumberSupplier` is an implementation of the `Supplier<T>` interface builtin in the JDK.
+See also the following complete example of how to implement the `Supplier<T>` interface and how to create an infinite stream.
 
 Infinite streams are seaming to be a little bit weird but they are also very useful.
 Think of a pseudo random number generator.
@@ -70,14 +90,6 @@ In this part of the assignment you have to implement two generators as shown in 
 ![Generator spec](./assets/images/GeneratorSpec.svg)
 
 _Remark: the UML is incomplete and is meant as implementation hint!_
-
-1. Implement the `RandomJokeSupplier` - this supplier returns a random joke every time it is used.
-1. Implement the `AllJokesSupplier` - this supplier iterates all jokes in an infinite loop i.e. if all jokes were retrieved it continues with the first joke.
-1. Implement the `JokeGenerator` - the generator returns infinite streams based on the implemented suppliers.
-1. Complete the test suite to ensure that your generators are working correctly!
-
-Note that the class structure is already there (including the empty unit tests).
-You may also implement the unit tests after the next part of the assignment.
 
 ## Using the generators
 
