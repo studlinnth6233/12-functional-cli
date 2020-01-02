@@ -21,7 +21,11 @@ public final class RandomJokeSupplier {
 
     public ResponseWrapper<JokeDto> get() {
         /* TODO fetch a random joke synchronously
+
+		 * return tryCatch(() -> icndbApi.getRandomJoke().get(), () -> null);
+
          * if an exception occurs return null */
+
         throw new NotImplementedException("Method `get()` is not implemented");
     }
 }
