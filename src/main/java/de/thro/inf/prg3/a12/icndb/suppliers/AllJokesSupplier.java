@@ -54,20 +54,17 @@ public final class AllJokesSupplier implements Supplier
 
 		ResponseWrapper<JokeDto> joke = null;
 
-		while (joke == null)
+		try
 		{
-			try
-			{
-				 joke = icndbApi.getJoke(jokeIndex).get();
+			joke = icndbApi.getJoke(jokeIndex).get();
 
-				jokeCountCur ++;
-				jokeIndex    ++;
-			}
+			jokeCountCur ++;
+			jokeIndex    ++;
+		}
 
-			catch (Exception e)
-			{
-				jokeIndex ++;
-			}
+		catch (Exception e)
+		{
+			jokeIndex ++;
 		}
 
 		if (jokeCountCur == jokeCountMax)

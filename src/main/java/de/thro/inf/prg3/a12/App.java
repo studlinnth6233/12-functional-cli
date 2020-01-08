@@ -4,6 +4,7 @@ import de.thro.inf.prg3.a12.icndb.JokeGenerator;
 import de.thro.inf.prg3.a12.model.JokeDto;
 import de.thro.inf.prg3.a12.model.ResponseWrapper;
 
+import java.util.Objects;
 import java.util.Scanner;
 import java.util.stream.Stream;
 
@@ -22,6 +23,7 @@ public abstract class App
 	public static void main(String[] args)
 	{
 		boolean shouldQuit = false;
+
 		int jokeCount;
 		int skipCount;
 
@@ -40,7 +42,7 @@ public abstract class App
 			 * and print the jokes to the STDOUT */
 
 			jokesSource
-				.filter(ResponseWrapper::isSuccessfull)
+				.filter(Objects::nonNull)
 				.skip(skipCount)
 				.limit(jokeCount)
 				.map(ResponseWrapper::getValue)
