@@ -44,7 +44,7 @@ public abstract class App
 				.skip(skipCount)
 				.limit(jokeCount)
 				.map(ResponseWrapper::getValue)
-				.forEach(joke -> System.out.println(joke.getJoke()));
+				.forEach(joke -> System.out.println(String.format("[%03d] : %s", joke.getId(), joke.getJoke())));
 
 			System.out.println("If you want to quit press [Q] otherwise press [C] to continue.");
 			String input = inputScanner.next();

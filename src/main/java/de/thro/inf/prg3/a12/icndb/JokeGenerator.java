@@ -1,5 +1,6 @@
 package de.thro.inf.prg3.a12.icndb;
 
+import de.thro.inf.prg3.a12.icndb.suppliers.AllJokesSupplier;
 import de.thro.inf.prg3.a12.icndb.suppliers.RandomJokeSupplier;
 import de.thro.inf.prg3.a12.model.JokeDto;
 import de.thro.inf.prg3.a12.model.ResponseWrapper;
@@ -35,6 +36,6 @@ public final class JokeGenerator
 	public Stream<ResponseWrapper<JokeDto>> jokesStream()
 	{
 		/* TODO create a new Stream of all jokes */
-		throw new NotImplementedException("Method `jokesStream()` is not implemented");
+		return Stream.generate(new AllJokesSupplier());
 	}
 }
