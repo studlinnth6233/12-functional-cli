@@ -39,6 +39,13 @@ public abstract class App
 			 * use `map` to unwrap the ResponseWrapper value
 			 * and print the jokes to the STDOUT */
 
+			jokesSource
+				.filter(ResponseWrapper::isSuccessfull)
+				.skip(skipCount)
+				.limit(jokeCount)
+				.map(ResponseWrapper::getValue)
+				.forEach(joke -> System.out.println(joke.getJoke()));
+
 			System.out.println("If you want to quit press [Q] otherwise press [C] to continue.");
 			String input = inputScanner.next();
 
