@@ -10,22 +10,24 @@ import org.apache.commons.lang3.NotImplementedException;
  * @author Peter Kurfer
  */
 
-public final class RandomJokeSupplier {
+public final class RandomJokeSupplier
+{
+	/* ICNDB API proxy to retrieve jokes */
+	private final ICNDBApi icndbApi;
 
-    /* ICNDB API proxy to retrieve jokes */
-    private final ICNDBApi icndbApi;
+	public RandomJokeSupplier()
+	{
+		icndbApi = ICNDBService.getInstance();
+	}
 
-    public RandomJokeSupplier() {
-        icndbApi = ICNDBService.getInstance();
-    }
-
-    public ResponseWrapper<JokeDto> get() {
-        /* TODO fetch a random joke synchronously
+	public ResponseWrapper<JokeDto> get()
+	{
+		/* TODO fetch a random joke synchronously
 
 		 * return tryCatch(() -> icndbApi.getRandomJoke().get(), () -> null);
 
-         * if an exception occurs return null */
+		 * if an exception occurs return null */
 
-        throw new NotImplementedException("Method `get()` is not implemented");
-    }
+		throw new NotImplementedException("Method `get()` is not implemented");
+	}
 }

@@ -1,9 +1,13 @@
 package de.thro.inf.prg3.a12.icndb;
 
+import de.thro.inf.prg3.a12.model.JokeDto;
+import de.thro.inf.prg3.a12.model.ResponseWrapper;
 import org.junit.jupiter.api.Test;
+import retrofit2.Call;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import java.util.logging.Logger;
 
@@ -13,27 +17,32 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author Peter Kurfer
  */
 
-public class ICNDBTests {
+public class ICNDBTests
+{
 	private static final Logger logger = Logger.getLogger(ICNDBTests.class.getName());
 	private static final int REQUEST_COUNT = 100;
 
 	private ICNDBApi icndbApi;
 
-	public ICNDBTests() {
+	public ICNDBTests()
+	{
 		this.icndbApi = ICNDBService.getInstance();
 	}
 
 	@Test
-	void testCollision() throws ExecutionException, InterruptedException {
-		var jokeNumbers = new HashSet<>();
-		var requests = 0;
-		var collision = false;
+	void testCollision() throws ExecutionException, InterruptedException
+	{
+		HashSet<Integer> jokeNumbers = new HashSet<>();
+		int requests = 0;
+		boolean collision = false;
 
-		while (requests++ < REQUEST_COUNT) {
-			var jokeCall = icndbApi.getRandomJoke();
-			var joke = jokeCall.get().getValue();
+		while (requests++ < REQUEST_COUNT)
+		{
+			CompletableFuture<ResponseWrapper<JokeDto>> jokeCall = icndbApi.getRandomJoke();
+			JokeDto joke = jokeCall.get().getValue();
 
-			if (jokeNumbers.contains(joke.getId())) {
+			if (jokeNumbers.contains(joke.getId()))
+			{
 				logger.info(String.format("Collision at joke %s", joke.getId()));
 				collision = true;
 				break;
@@ -47,8 +56,9 @@ public class ICNDBTests {
 	}
 
 	@Test
-	void testGetRandomJokeWithChangedName() throws ExecutionException, InterruptedException {
-		var j = icndbApi.getRandomJoke("Bruce", "Wayne").get().getValue();
+	void testGetRandomJokeWithChangedName() throws ExecutionException, InterruptedException
+	{
+		JokeDto j = icndbApi.getRandomJoke("Bruce", "Wayne").get().getValue();
 		assertNotNull(j);
 		assertFalse(j.getJoke().contains("Chuck"));
 		assertFalse(j.getJoke().contains("Norris"));
@@ -56,16 +66,19 @@ public class ICNDBTests {
 	}
 
 	@Test
-	void testGetJokeById() throws ExecutionException, InterruptedException {
+	void testGetJokeById() throws ExecutionException, InterruptedException
+	{
 
-		var randomIds = new ArrayList<Integer>(10);
+		ArrayList<Integer> randomIds = new ArrayList<Integer>(10);
 
-		for (var i = 0; i < 10; i++) {
+		for (int i = 0; i < 10; i++)
+		{
 			randomIds.add(icndbApi.getRandomJoke().get().getValue().getId());
 		}
 
-		for (var id : randomIds) {
-			var j = icndbApi.getJoke(id).get().getValue();
+		for (int id : randomIds)
+		{
+			JokeDto j = icndbApi.getJoke(id).get().getValue();
 			assertNotNull(j);
 			assertTrue(randomIds.contains(j.getId()));
 			logger.info(j.toString());
@@ -73,8 +86,9 @@ public class ICNDBTests {
 	}
 
 	@Test
-	void testGetJokeCount() throws ExecutionException, InterruptedException {
-		var jokeCount = icndbApi.getJokeCount().get().getValue();
+	void testGetJokeCount() throws ExecutionException, InterruptedException
+	{
+		int jokeCount = icndbApi.getJokeCount().get().getValue();
 
 		assertNotEquals(0, jokeCount);
 	}

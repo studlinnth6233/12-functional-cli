@@ -11,68 +11,75 @@ import java.util.concurrent.CompletableFuture;
 /**
  * ICNDB singleton service
  * acts as proxy to an underlying Retrofit proxy object
+ *
  * @author Peter Kurfer
  */
-public final class ICNDBService implements ICNDBApi {
+public final class ICNDBService implements ICNDBApi
+{
+	/**
+	 * Singleton instance
+	 */
+	private static final ICNDBService instance = new ICNDBService();
 
-    /**
-     * Singleton instance
-     */
-    private static final ICNDBService instance = new ICNDBService();
+	/**
+	 * Retrofit proxy
+	 */
+	private final ICNDBApi icndbApi;
 
-    /**
-     * Retrofit proxy
-     */
-    private final ICNDBApi icndbApi;
+	/**
+	 * Access the singleton instance
+	 */
+	public static ICNDBService getInstance()
+	{
+		return instance;
+	}
 
-    /**
-     * Access the singleton instance
-     */
-    public static ICNDBService getInstance() {
-        return instance;
-    }
+	private ICNDBService()
+	{
+		/* Initialize Retrofit */
+		Retrofit retrofit = new Retrofit.Builder()
+			.baseUrl("http://api.icndb.com")
+			.addConverterFactory(GsonConverterFactory.create())
+			/* CallAdapterFactory required to wrap calls in CompletableFutures */
+			.addCallAdapterFactory(Java8CallAdapterFactory.create())
+			.build();
 
-    private ICNDBService() {
-        /* Initialize Retrofit */
-        var retrofit = new Retrofit.Builder()
-                .baseUrl("http://api.icndb.com")
-                .addConverterFactory(GsonConverterFactory.create())
-                /* CallAdapterFactory required to wrap calls in CompletableFutures */
-                .addCallAdapterFactory(Java8CallAdapterFactory.create())
-                .build();
+		icndbApi = retrofit.create(ICNDBApi.class);
+	}
 
-        icndbApi = retrofit.create(ICNDBApi.class);
-    }
+	/**
+	 * @inheritDoc
+	 */
+	@Override
+	public CompletableFuture<ResponseWrapper<Integer>> getJokeCount()
+	{
+		return icndbApi.getJokeCount();
+	}
 
-    /**
-     * @inheritDoc
-     */
-    @Override
-    public CompletableFuture<ResponseWrapper<Integer>> getJokeCount() {
-        return icndbApi.getJokeCount();
-    }
+	/**
+	 * @inheritDoc
+	 */
+	@Override
+	public CompletableFuture<ResponseWrapper<JokeDto>> getRandomJoke()
+	{
+		return icndbApi.getRandomJoke();
+	}
 
-    /**
-     * @inheritDoc
-     */
-    @Override
-    public CompletableFuture<ResponseWrapper<JokeDto>> getRandomJoke() {
-        return icndbApi.getRandomJoke();
-    }
+	/**
+	 * @inheritDoc
+	 */
+	@Override
+	public CompletableFuture<ResponseWrapper<JokeDto>> getRandomJoke(String firstName, String lastName)
+	{
+		return icndbApi.getRandomJoke(firstName, lastName);
+	}
 
-    /**
-     * @inheritDoc
-     */
-    @Override
-    public CompletableFuture<ResponseWrapper<JokeDto>> getRandomJoke(String firstName, String lastName) {
-        return icndbApi.getRandomJoke(firstName, lastName);
-    }
-
-    /**
-     * @inheritDoc
-     */
-    @Override
-    public CompletableFuture<ResponseWrapper<JokeDto>> getJoke(int id) {
-        return icndbApi.getJoke(id);
-    }
+	/**
+	 * @inheritDoc
+	 */
+	@Override
+	public CompletableFuture<ResponseWrapper<JokeDto>> getJoke(int id)
+	{
+		return icndbApi.getJoke(id);
+	}
 }
